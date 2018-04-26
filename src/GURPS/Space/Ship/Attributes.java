@@ -8,6 +8,10 @@ public class Attributes<A1, A2, A3, A4, A5> {
     A4 a4;
     A5 a5;
 
+    public Attributes(long cost) {
+        this.cost=cost;
+    }
+
     public Attributes(long cost, A1 a1) {
         this.cost=cost;
         this.a1=a1;

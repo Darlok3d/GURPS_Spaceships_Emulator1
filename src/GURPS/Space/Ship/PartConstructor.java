@@ -4,35 +4,40 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PartConstructor {  //Singleton
-    public static HashMap<String, HashMap<Integer, Attributes>> armorMap;
-    public static HashMap<Integer, Double> cargoHoldMap;
-    public static HashMap<Integer, Attributes> cloakDevMap;
-    public static HashMap<Integer, Attributes> contGravLiftMap;
-    public static HashMap<Integer, Attributes> contRoomMap;
-    public static HashMap<Integer, Attributes> defECMMap;
-    public static HashMap<Integer, Attributes> engRoomMap;
-    public static HashMap<Integer, Attributes> enhSensArrMap;
-    public static HashMap<Integer, Long> extClampMap;
-    public static HashMap<Integer, Attributes> factMap;
-    public static HashMap<Integer, Attributes> forceScrLightMap;
-    public static HashMap<Integer, Attributes> forceScrHeavyMap;
-    public static HashMap<Integer, Attributes> fuelTankMap;
-    public static HashMap<Integer, Attributes> habMap;
-    public static HashMap<Integer, Attributes> hangarMap;
-    public static HashMap<Integer, Attributes> jetEngMap;
-    public static HashMap<Integer, Attributes> jumpGateMap;
-    public static HashMap<Integer, Attributes> minRefMap;
-    public static HashMap<Integer, Attributes> openSpMap;
-    public static HashMap<Integer, Attributes> pasSeatMap;
-    public static HashMap<Integer, Attributes> chemPowMap;
-    public static HashMap<Integer, Attributes> reactorMap;
-    public static HashMap<Integer, Attributes> ramscoopMap;
-    public static HashMap<Integer, Attributes> chemRockMap;
-    public static HashMap<Integer, Attributes> elecRockMap;
-    public static HashMap<Integer, Attributes> fissRockMap;
-    public static HashMap<Integer, Attributes> nuclPulseMap;
-    public static HashMap<Integer, Attributes> fusRockMap;
-    public static HashMap<String, String> descriptionMap = new HashMap<>();
+    private static HashMap<String, HashMap<Integer, Attributes>> armorMap;
+    private static HashMap<Integer, Double> cargoHoldMap;
+    private static HashMap<Integer, Attributes> cloakDevMap;
+    private static HashMap<Integer, Attributes> contGravLiftMap;
+    private static HashMap<Integer, Attributes> contRoomMap;
+    private static HashMap<Integer, Attributes> defECMMap;
+    private static HashMap<Integer, Attributes> engRoomMap;
+    private static HashMap<Integer, Attributes> enhSensArrMap;
+    private static HashMap<Integer, Long> extClampMap;
+    private static HashMap<Integer, Attributes> factMap;
+    private static HashMap<Integer, Attributes> forceScrLightMap;
+    private static HashMap<Integer, Attributes> forceScrHeavyMap;
+    private static HashMap<Integer, Attributes> fuelTankMap;
+    private static HashMap<Integer, Attributes> habMap;
+    private static HashMap<Integer, Attributes> hangarMap;
+    private static HashMap<Integer, Attributes> jetEngMap;
+    private static HashMap<Integer, Attributes> jumpGateMap;
+    private static HashMap<Integer, Attributes> minRefMap;
+    private static HashMap<Integer, Attributes> openSpMap;
+    private static HashMap<Integer, Attributes> pasSeatMap;
+    private static HashMap<Integer, Attributes> chemPowMap;
+    private static HashMap<Integer, Attributes> reactorMap;
+    private static HashMap<Integer, Attributes> ramscoopMap;
+    private static HashMap<Integer, Attributes> chemRockMap;
+    private static HashMap<Integer, Attributes> elecRockMap;
+    private static HashMap<Integer, Attributes> fissRockMap;
+    private static HashMap<Integer, Attributes> nuclPulseMap;
+    private static HashMap<Integer, Attributes> fusRockMap;
+    private static HashMap<Integer, Attributes> antimatterEngineMap;
+    private static HashMap<Integer, Attributes> reactionlessEngineMap;
+    private static HashMap<Integer, Attributes> robotArmMap;
+    private static HashMap<Integer, Attributes> softLandMap;
+
+    private static HashMap<String, String> descriptionMap = new HashMap<>();
 
 
     public PartConstructor() {
@@ -326,6 +331,34 @@ public class PartConstructor {  //Singleton
         long[] fusRockCost = {300,1000,3000,10000,30000,100000,300000,1000000,3000000,10000000,30000000};
         Integer[] fusRockWorkSp = {0,0,0,0,0,1,3,10,30,100,300};
         fusRockMap=mapFill(modernSM, fusRockCost, fusRockWorkSp);
+
+        /*ANTIMATTER AND TOTAL CONVERSION ENGINE TABLE*/
+        long[] antimatterEngineCost = {150,500,1500,5000,15000,50000,150000,500000,1500000,5000000,15000000};
+        Integer[] antimatterEngineWorkSp = {0,0,0,0,0,1,3,10,30,100,300};
+        antimatterEngineMap=mapFill(modernSM, antimatterEngineCost, antimatterEngineWorkSp);
+
+        /*REACTIONLESS ENGINE TABLE*/
+        long[] rottartyReactLessEngCost = {15,50,150,500,1500,5000,15000,50000,150000,500000,1500000};
+        Long[] standartReactLessEngCost = {30L,100L,300L,1000L,3000L,10000L,30000L,100000L,300000L,1000000L,3000000L};
+        Long[] hotReactLessEngCost = {100L,300L,1000L,3000L,10000L,30000L,100000L,300000L,1000000L,3000000L,10000000L};
+        Long[] superReactLessEngCost = {200L,600L,2000L,6000L,20000L,60000L,200000L,600000L,2000000L,6000000L,20000000L};
+        Long[] subwarpReactLessEngCost = {300L,1000L,3000L,10000L,30000L,100000L,300000L,1000000L,3000000L,10000000L,30000000L};
+        Integer[] reactionlessEngineWorkSp = {0,0,0,0,0,1,3,10,30,100,300};
+        reactionlessEngineMap=mapFill(modernSM, rottartyReactLessEngCost, standartReactLessEngCost, hotReactLessEngCost,
+                superReactLessEngCost, subwarpReactLessEngCost, reactionlessEngineWorkSp);
+
+        /*ROBOT ARM TABLE*/
+        long[] robotArmCost = {300L,1000L,3000L,10000L,30000L,100000L,300000L,1000000L,3000000L,10000000L,30000000L};
+        Integer[] robotArmST = {20,30,50,70,100,150,200,300,500,700,1000};
+        Integer[] robotArmWorkSp = {0,0,0,0,0,1,3,10,30,100,300};
+        robotArmMap=mapFill(modernSM, robotArmCost, robotArmST, robotArmWorkSp);
+
+        /*SOFT-LANDING SYSTEM TABLE*/
+        long[] softLandCost = {50,100,200,500,1000,2000,5000,10000,20000,50000,100000};
+        softLandMap=mapFill(modernSM, softLandCost);
+
+
+
 
 
 
@@ -896,12 +929,153 @@ public class PartConstructor {  //Singleton
         return new FusionRockEngine(size, cost, type, name, acceleration, deltaV, fuelType, workspace, techLvl);
     }
 
+    public AntimatterEngine constructAntimatterEngine (int size, byte type, int techLvl) {
+        Attributes attributes = antimatterEngineMap.get(size);
+        long cost = attributes.getCost();
+        int workspace = (int)attributes.getVal1();
+        String name;
+        double acceleration;
+        double deltaV;
+        byte fuelType;
+        if (type==0) {
+            name = "Antimatter Thermal Rocket";
+            fuelType = 8;
+            deltaV = 1.8;
+            if (techLvl==9)
+                acceleration=0.1;
+            else if (techLvl==10)
+                acceleration=0.2;
+            else
+                acceleration=0.4;
+        }
+        else if (type==1) {
+            name = "Antimatter Plasma Rocket";
+            fuelType = 11;
+            acceleration=0.01;
+            if (techLvl==10)
+                deltaV=120;
+            else
+                deltaV=360;
+        }
+        else if (type==2) {
+            name = "Antimatter Plasma Torch";
+            fuelType = 11;
+            acceleration=1;
+            if (techLvl==10)
+                deltaV=120;
+            else
+                deltaV=360;
+        }
+        else if (type==3) {
+            name = "Super Antimatter Plasma Torch";
+            fuelType = 11;
+            acceleration = 100;
+            deltaV = 360;
+        }
+        else if (type==4) {
+            name = "Antimatter Pion";
+            fuelType = 13;
+            acceleration = 0.005;
+            deltaV = 3400;
+        }
+        else if (type==5) {
+            name = "Antimatter Pion Torch";
+            fuelType = 13;
+            acceleration = 0.1;
+            deltaV = 3400;
+        }
+        else if (type==6) {
+            name = "Total Conversion Torch";
+            fuelType = 5;
+            acceleration = 1;
+            deltaV = 10000;
+        }
+        else {
+            name = "Super Conversion Torch";
+            fuelType = 5;
+            acceleration = 50;
+            deltaV = 10000;
+        }
+        if ((type==0)||(type==1)||(type==2)||(type==3)) {
+            name="High Thrust "+name;
+            acceleration=acceleration*2;
+            deltaV=deltaV/2;
+        }
+
+        return new AntimatterEngine(size, cost, type, name, acceleration, deltaV, fuelType, workspace, techLvl);
+    }
+
+    public ReactionlessEngine constructReactionlessEngine (int size, byte type, int techLvl) {
+        Attributes attributes = reactionlessEngineMap.get(size);
+        String name;
+        double acceleration;
+        long cost;
+        int workspace = (int)attributes.getVal5();
+        if (type==0) {
+            name="Rotary Reactionless Engine";
+            acceleration=0.1;
+            cost=attributes.getCost();
+        }
+        else if (type==1) {
+            name="Standard Reactionless Engine";
+            cost=(long)attributes.getVal1();
+            if (techLvl==10)
+                acceleration=0.5;
+            else
+                acceleration=1;
+        }
+        else if (type==2) {
+            name="Hot Reactionless Engine";
+            cost=(long)attributes.getVal2();
+            if (techLvl==10)
+                acceleration=1;
+            else
+                acceleration=2;
+        }
+        else if (type==3) {
+            name="Super Reactionless Engine";
+            cost=(long)attributes.getVal3();
+            if (techLvl==11)
+                acceleration=50;
+            else
+                acceleration=100;
+        }
+        else {
+            name="Subwarp";
+            cost=(long)attributes.getVal4();
+            acceleration=500;
+        }
+
+        return new ReactionlessEngine(size, cost, type, name, acceleration, workspace, techLvl);
+    }
+
+    public RobotArm constructRobotArm (int size, int techLvl) {
+        Attributes attributes=robotArmMap.get(size);
+        long cost=attributes.getCost();
+        int sT=(int)attributes.getVal1();
+        int workspace=(int)attributes.getVal2();
+
+        return new RobotArm(size, cost, sT, workspace, techLvl);
+    }
+
+    public SoftLanding constructSoftLandint (int size, int techLvl) {
+        Attributes attributes=softLandMap.get(size);
+        long cost = attributes.getCost();
+
+        return new SoftLanding(size, cost, techLvl);
+    }
 
 
 
 
 
 
+    HashMap<Integer, Attributes> mapFill (int[] sm, long[] cost) {
+        HashMap<Integer, Attributes> map = new HashMap<>(11);
+        for (int i=0; i<sm.length; i++)
+            map.put(sm[i], new Attributes(cost[i]));
+        return map;
+    }
 
     <T1>HashMap<Integer, Attributes> mapFill (int[] sm, long[] cost, T1[] val1) {
         HashMap<Integer, Attributes> map = new HashMap<>(11);
