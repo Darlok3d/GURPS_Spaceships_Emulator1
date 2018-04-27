@@ -2,7 +2,7 @@ package GURPS.Space.Ship;
 
 public class FissionRockEngine extends Engine {
 
-    public FissionRockEngine (int size, long cost, byte type, String name, boolean violate, double acceleration, double deltaV, byte fuelType, int workspace, int techLvl) {
+    public FissionRockEngine (int size, long cost, byte type, String name, boolean violate, double acceleration, double deltaV, short fuelType, int workspace, int techLvl) {
         this.size=size;
         this.cost=cost;
         this.type=type;

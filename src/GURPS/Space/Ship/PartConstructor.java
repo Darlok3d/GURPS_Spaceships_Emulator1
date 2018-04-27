@@ -36,6 +36,10 @@ public class PartConstructor {  //Singleton
     private static HashMap<Integer, Attributes> reactionlessEngineMap;
     private static HashMap<Integer, Attributes> robotArmMap;
     private static HashMap<Integer, Attributes> softLandMap;
+    private static HashMap<Integer, Attributes> solarPanMap;
+    private static HashMap<Integer, Attributes> spaceSailMap;
+    private static HashMap<Integer, Attributes> starDriveMap;
+    private static HashMap<Integer, Attributes> stasisWebMap;
 
     private static HashMap<String, String> descriptionMap = new HashMap<>();
 
@@ -356,6 +360,28 @@ public class PartConstructor {  //Singleton
         /*SOFT-LANDING SYSTEM TABLE*/
         long[] softLandCost = {50,100,200,500,1000,2000,5000,10000,20000,50000,100000};
         softLandMap=mapFill(modernSM, softLandCost);
+
+        /*SOLAR PANEL TABLE*/
+        long[] solarPanCost = {150,500,1500,5000,15000,50000,150000,500000,1500000,5000000,15000000};
+        solarPanMap=mapFill(modernSM, solarPanCost);
+
+        /*SPACE SAIL TABLE*/
+        int[] spaceSailSM = {5,6,7,8,9,10,11,12};
+        long[] spaceSailCost = {300,1000,3000,10000,30000,100000,300000,1000000};
+        Integer[] spaceSailWorkSp = {0,0,0,0,0,1,3,10};
+        spaceSailMap=mapFill(spaceSailSM, spaceSailCost, spaceSailWorkSp);
+
+        /*STAR DRIVE TABLE*/
+        long[] starDriveCost = {};
+        Integer[] starDriveWorkSp = {};
+        starDriveMap=mapFill(modernSM, starDriveCost, starDriveWorkSp);
+
+        /*STASIS WEB MAP*/
+        long[] stasisWebCost = {3,6,12,25,50,100,200,500,1000,2000,5000};    // cost in million credits
+        Integer[] stasisWebWorkSp = {0,0,0,0,0,1,3,10,30,100,300};
+        stasisWebMap = mapFill(modernSM, stasisWebCost, stasisWebWorkSp);
+
+
 
 
 
@@ -721,7 +747,7 @@ public class PartConstructor {  //Singleton
         String name;
         double acceleration;
         double deltaV;
-        byte fuelType;
+        short fuelType;
         boolean violate;
         long cost = attributes.getCost();
         int workspace = (int)attributes.getVal1();
@@ -750,7 +776,7 @@ public class PartConstructor {  //Singleton
         String name;
         double acceleration;
         double deltaV;
-        byte fuelType;
+        short fuelType;
         int workspace = (int)attributes.getVal1();
         if (type==0) {
             name = "Ion Drive";
@@ -780,7 +806,7 @@ public class PartConstructor {  //Singleton
         String name;
         double acceleration;
         double deltaV;
-        byte fuelType;
+        short fuelType;
         boolean violate = false;
         int workspace = (int)attributes.getVal1();
         if (type==0) {
@@ -825,7 +851,7 @@ public class PartConstructor {  //Singleton
         String name="";
         double acceleration=0.0;
         double deltaV=0.0;
-        byte fuelType=9;
+        short fuelType=9;
         int workspace = (int)attributes.getVal1();
         if (type==0) {
             name = "Orion Drive";
@@ -891,7 +917,7 @@ public class PartConstructor {  //Singleton
         String name="";
         double acceleration=0.0;
         double deltaV=0.0;
-        byte fuelType=0;
+        short fuelType=0;
         if (type==0) {
             name = "Fusion Rocket";
             acceleration=0.005;
@@ -936,7 +962,7 @@ public class PartConstructor {  //Singleton
         String name;
         double acceleration;
         double deltaV;
-        byte fuelType;
+        short fuelType;
         if (type==0) {
             name = "Antimatter Thermal Rocket";
             fuelType = 8;
@@ -1058,11 +1084,62 @@ public class PartConstructor {  //Singleton
         return new RobotArm(size, cost, sT, workspace, techLvl);
     }
 
-    public SoftLanding constructSoftLandint (int size, int techLvl) {
+    public SoftLanding constructSoftLanding (int size, int techLvl) {
         Attributes attributes=softLandMap.get(size);
         long cost = attributes.getCost();
 
         return new SoftLanding(size, cost, techLvl);
+    }
+
+    public SolarPanel constructSolarPanel (int size, int techLvl) {
+        Attributes attributes=solarPanMap.get(size);
+        long cost = attributes.getCost();
+
+        return new SolarPanel(size, cost, techLvl);
+    }
+
+    public SpaceSail constructSpaceSail (int size, byte type, int techLvl) {
+        Attributes attributes = spaceSailMap.get(size);
+        long cost = attributes.getCost();
+        String name;
+        double acceleration;
+        int workspace = (int)attributes.getVal1();
+        if (type==0) {
+            name = "Lightsail";
+            acceleration = 0.0001;
+        }
+        else {
+            name = "Magsail";
+            acceleration = 0.001;
+        }
+
+        return new SpaceSail(size, cost, type, name, acceleration, workspace, techLvl);
+    }
+
+    public StarDrive constructStarDrive(int size, byte type, int techLvl) {
+        Attributes attributes = starDriveMap.get(size);
+        long cost = attributes.getCost();
+        int workplace = (int)attributes.getVal1();
+        String name;
+        byte ftlRating;
+        if (type==0) {
+            name = "Stardrive Engine";
+            ftlRating = -1;
+        }
+        else {
+            name = "Super Stardrive Engine";
+            ftlRating = -2;
+        }
+
+        return new StarDrive(size, cost, type, name, ftlRating, workplace, techLvl);
+    }
+
+    public StasisWeb constructStasisWeb (int size, int techLvl) {
+        Attributes attributes = stasisWebMap.get(size);
+        long cost = attributes.getCost();
+        int workspace = (int)attributes.getVal1();
+
+        return new StasisWeb(size, cost, workspace, techLvl);
     }
 
 

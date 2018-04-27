@@ -5,6 +5,6 @@ public abstract class Engine extends ShipPart {
     byte type;
     double acceleration;
     double deltaV;
-    byte fuelType;
+    short fuelType;
 
 }
