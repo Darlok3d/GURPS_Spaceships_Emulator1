@@ -40,6 +40,11 @@ public class PartConstructor {  //Singleton
     private static HashMap<Integer, Attributes> spaceSailMap;
     private static HashMap<Integer, Attributes> starDriveMap;
     private static HashMap<Integer, Attributes> stasisWebMap;
+    private static HashMap<Integer, Attributes> majorBattMap;
+    private static HashMap<Integer, Attributes> mediumBattMap;
+    private static HashMap<Integer, Attributes> secondaryBattMap;
+    private static HashMap<Integer, Attributes> tertiaryBattMap;
+    private static HashMap<Integer, Attributes> spinalBattMap;
 
     private static HashMap<String, String> descriptionMap = new HashMap<>();
 
@@ -380,6 +385,63 @@ public class PartConstructor {  //Singleton
         long[] stasisWebCost = {3,6,12,25,50,100,200,500,1000,2000,5000};    // cost in million credits
         Integer[] stasisWebWorkSp = {0,0,0,0,0,1,3,10,30,100,300};
         stasisWebMap = mapFill(modernSM, stasisWebCost, stasisWebWorkSp);
+
+        /*WEAPON MAJOR BATTERY TABLE*/
+        int[] majorBattSM = {5,6,7,8,9,10,11,12,13,14,15};
+        long[] majorBattCost = {150,600,1500,6000,15000,60000,150000,600000,1500000,6000000,15000000};
+        Integer[] majorBattBeamPow = {10,30,100,300,1000,3000,10000,30000,100000,300000,1000000}; //power in MJ
+        String[] majorBattBeamDam = {"4d","6d","2dx5","3dx5","4dx5","6dx5","4dx10","6dx10","2dx50","3dx50","4dx50"};
+        Integer[] majorBattGunCal = {10,12,14,16,20,24,28,32,40,48,56};
+        Integer[] majorBattMisShots = {7,10,15,20,30,50,70,100,150,200,300};
+        Integer[] majorBattWorkSp = {0,0,0,0,0,1,3,10,30,100,300};
+        majorBattMap=mapFill(majorBattSM, majorBattCost, majorBattBeamPow, majorBattBeamDam, majorBattGunCal,
+                majorBattMisShots, majorBattWorkSp);
+
+        /*WEAPON MEDIUM BATTERY TABLE*/
+        int[] mediumBattSM = {5,6,7,8,9,10,11,12,13,14,15};
+        long[] mediumBattCost = {150,600,1500,6000,15000,60000,150000,600000,1500000,6000000,15000000};
+        Integer[] mediumBattBeamPow = {3,10,30,100,300,1000,3000,10000,30000,100000,300000}; //power in MJ
+        String[] mediumBattBeamDam = {"3d","4d","6d","2dx5","3dx5","4dx5","6dx5","4dx10","6dx10","2dx50","3dx50"};
+        Integer[] mediumBattGunCal = {8,10,12,14,16,20,24,28,32,40,48};
+        Integer[] mediumBattMisShots = {5,7,10,15,20,30,50,70,100,150,200};
+        Integer[] mediumBattWorkSp = {0,0,0,0,0,1,3,10,30,100,300};
+        mediumBattMap=mapFill(mediumBattSM, mediumBattCost, mediumBattBeamPow, mediumBattBeamDam, mediumBattGunCal,
+                mediumBattMisShots, mediumBattWorkSp);
+
+        /*WEAPON SECONDARY BATTERY TABLE*/
+        int[] secondaryBattSM = {6,7,8,9,10,11,12,13,14,15};
+        long[] secondaryBattCost = {600,1500,6000,15000,60000,150000,600000,1500000,6000000,15000000};
+        Integer[] secondaryBattBeamPow = {3,10,30,100,300,1000,3000,10000,30000,100000};  //power in MJ
+        String[] secondaryBattBeamDam = {"3d","4d","6d","2dx5","3dx5","4dx5","6dx5","4dx10","6dx10","2dx50"};
+        Integer[] secondaryBattGunCal = {8,10,12,14,16,20,24,28,32,40};
+        Integer[] secondaryBattMisShots = {5,7,10,15,20,30,50,70,100,150};
+        Integer[] secondaryBattWorkSp = {0,0,0,0,1,3,10,30,100,300};
+        secondaryBattMap=mapFill(secondaryBattSM, secondaryBattCost, secondaryBattBeamPow, secondaryBattBeamDam,
+                secondaryBattGunCal, secondaryBattMisShots, secondaryBattWorkSp);
+
+        /*WEAPON TERTIARY BATTERY TABLE*/
+        int[] tertiaryBattSM = {7,8,9,10,11,12,13,14,15};
+        long[] tertiaryBattCost = {1500,6000,15000,60000,150000,600000,1500000,6000000,15000000};
+        Integer[] tertiaryBattBeamPow = {3,10,30,100,300,1000,3000,10000,30000};  //power in MJ
+        String[] tertiaryBattBeamDam = {"3d","4d","6d","2dx5","3dx5","4dx5","6dx5","4dx10","6dx10"};
+        Integer[] tertiaryBattGunCal = {8,10,12,14,16,20,24,28,32};
+        Integer[] tertiaryBattMisShots = {5,7,10,15,20,30,50,70,100};
+        Integer[] tertiaryBattWorkSp = {0,0,0,1,3,10,30,100,300};
+        tertiaryBattMap=mapFill(tertiaryBattSM, tertiaryBattCost, tertiaryBattBeamPow, tertiaryBattBeamDam,
+                tertiaryBattGunCal, tertiaryBattMisShots, tertiaryBattWorkSp);
+
+        /*WEAPON SPINAL BATTERY TABLE*/
+        int[] spinalBattSM = {5,6,7,8,9,10,11,12,13,14,15};
+        long[] spinalBattCost = {600,1500,6000,15000,60000,150000,600000,1500000,6000000,15000000,60000000};
+        Integer[] spinalBattBeamPow = {30,100,300,1000,3000,10000,30000,100000,300000,1000000,3000000}; //power in MJ
+        String[] spinalBattBeamDam = {"6d","2dx5","3dx5","4dx5","6dx5","4dx10","6dx10","2dx50","3dx50","4dx50","6dx50"};
+        Integer[] spinalBattGunCal = {12,14,16,20,24,28,32,40,48,56,64};
+        Integer[] spinalBattMisShots = {7,10,15,20,30,50,70,100,150,200,300};
+        Integer[] spinalBattWorkSp = {0,0,0,0,0,1,3,10,30,100,300};
+        spinalBattMap=mapFill(spinalBattSM, spinalBattCost, spinalBattBeamPow, spinalBattBeamDam, spinalBattGunCal,
+                spinalBattMisShots, spinalBattWorkSp);
+
+
 
 
 
